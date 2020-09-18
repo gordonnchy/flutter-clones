@@ -13,11 +13,7 @@ class WhatsAppPage extends StatefulWidget {
 class _WhatsAppPageState extends State<WhatsAppPage> {
   int _index = 1;
   Color _defaultColor = Colors.teal[800];
-  bool _lightDarkModelValue = false;
-
-  _submitRadioButton() {
-    print('');
-  }
+  // bool _lightDarkModelValue = false;
 
   @override
   Widget build(BuildContext context) {
