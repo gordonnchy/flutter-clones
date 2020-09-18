@@ -1,0 +1,1 @@
+enum ChatStatus { isRead, isNotRead }
