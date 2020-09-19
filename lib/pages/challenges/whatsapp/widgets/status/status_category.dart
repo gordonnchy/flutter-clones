@@ -17,7 +17,7 @@ class StatusCategory extends StatelessWidget {
         Container(
           width: MediaQuery.of(context).size.width,
           padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
-          color: Colors.grey[300],
+          color: Theme.of(context).brightness == Brightness.light ? Colors.grey[300] : Colors.black12,
           child: Text('$category'),
         ),
         Column(
@@ -35,8 +35,8 @@ class StatusCategory extends StatelessWidget {
                             ),
                             title: Text(status.name),
                             subtitle: TimeWidget(
-                              hours: status.time.hour,
-                              minutes: status.time.minute,
+                              date: status.time,
+                              dateFormat: 'E, H:m',
                             ),
                             onTap: () {},
                           ),

@@ -5,13 +5,11 @@ import '../../helpers/call_helpers.dart';
 
 class CallTimeStatus extends StatelessWidget {
   final CallStatus callStatus;
-  final int hours;
-  final int minutes;
+  final DateTime date;
 
   CallTimeStatus({
     @required this.callStatus,
-    this.hours,
-    this.minutes,
+    this.date
   });
 
   @override
@@ -44,8 +42,8 @@ class CallTimeStatus extends StatelessWidget {
           width: 10.0,
         ),
         TimeWidget(
-          hours: hours,
-          minutes: minutes,
+          date: date,
+          dateFormat: 'E d, y H:m',
         ),
       ],
     );

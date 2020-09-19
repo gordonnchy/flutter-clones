@@ -35,8 +35,7 @@ class CallsPage extends StatelessWidget {
           title: Text(calls[index].name),
           subtitle: CallTimeStatus(
             callStatus: _callStatus,
-            hours: calls[index].time.hour,
-            minutes: calls[index].time.minute,
+            date: calls[index].time,
           ),
           trailing: IconButton(
             icon: Icon(

@@ -41,7 +41,7 @@ class ChatsPage extends StatelessWidget {
                 color: chats[index].chatStatus == ChatStatus.isRead
                     ? Colors.blue
                     : Colors.grey,
-                    size: 18.0,
+                size: 18.0,
               ),
               SizedBox(
                 width: 10.0,
@@ -49,9 +49,11 @@ class ChatsPage extends StatelessWidget {
               Text(chats[index].message)
             ],
           ),
-          trailing: TimeWidget(
-            hours: chats[index].time.hour,
-            minutes: chats[index].time.minute,
+          trailing: FittedBox(
+            child: TimeWidget(
+              date: chats[index].time,
+              dateFormat: 'Hm',
+            ),
           ),
           onTap: () {
             print('open chat');
