@@ -35,6 +35,7 @@ class ChatsPage extends StatelessWidget {
           ),
           title: Text(chats[index].name),
           subtitle: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
               Icon(
                 Icons.check,
@@ -46,7 +47,13 @@ class ChatsPage extends StatelessWidget {
               SizedBox(
                 width: 10.0,
               ),
-              Text(chats[index].message)
+              Expanded(
+                child: Text(
+                  chats[index].message,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )
             ],
           ),
           trailing: FittedBox(
