@@ -26,7 +26,7 @@ class _AppState extends State<App> {
   }
 
   readLightDarkStateMode() async {
-    modeValue = await readIntData(key: 'lightDarkModeState');
+    modeValue = await readIntData(key: 'lightDarkModeState') ?? -1;
     setState(() {});
   }
 
@@ -35,15 +35,18 @@ class _AppState extends State<App> {
     return ChangeNotifierProvider(
       create: (BuildContext context) => WhatsAppProvider(),
       builder: (BuildContext context, _) {
+        // try to get the current mode value from shared pref
+        readLightDarkStateMode();
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.indigo,
-            brightness: modeValue == 1 ||
-                    Provider.of<WhatsAppProvider>(context).lightDarkModeState ==
-                        1
-                ? Brightness.dark
-                : Brightness.light,
+            brightness:
+                Provider.of<WhatsAppProvider>(context).lightDarkModeState ==
+                            1 ||
+                        modeValue == 1
+                    ? Brightness.dark
+                    : Brightness.light,
           ),
           home: SplashScreen(),
           routes: {
