@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../../../providers/whatsapp/whatsapp.dart';
 
 import './widgets/calls.dart';
 import './widgets/chats.dart';
@@ -13,8 +16,6 @@ class WhatsAppPage extends StatefulWidget {
 class _WhatsAppPageState extends State<WhatsAppPage> {
   int _index = 1;
   Color _defaultColor = Colors.teal[800];
-
-  int _radioValue = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -56,11 +57,19 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                     children: [
                                       Row(
                                         children: [
-                                          Radio<int>(
-                                            value: 0,
-                                            groupValue: _radioValue,
-                                            onChanged: (int value) {
-                                              print(value);
+                                          Consumer<WhatsAppProvider>(
+                                            builder: (BuildContext context,
+                                                WhatsAppProvider provider, _) {
+                                              return Radio(
+                                                value: 0,
+                                                groupValue:
+                                                    provider.lightDarkModeState,
+                                                onChanged: (int value) {
+                                                  provider
+                                                      .setlightDarkModeState(
+                                                          value);
+                                                },
+                                              );
                                             },
                                           ),
                                           Text('Light mode'),
@@ -68,11 +77,19 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                       ),
                                       Row(
                                         children: [
-                                          Radio<int>(
-                                            value: 1,
-                                            groupValue: _radioValue,
-                                            onChanged: (int value) {
-                                              print(value);
+                                          Consumer<WhatsAppProvider>(
+                                            builder: (BuildContext context,
+                                                WhatsAppProvider provider, _) {
+                                              return Radio<int>(
+                                                value: 1,
+                                                groupValue:
+                                                    provider.lightDarkModeState,
+                                                onChanged: (int value) {
+                                                  provider
+                                                      .setlightDarkModeState(
+                                                          value);
+                                                },
+                                              );
                                             },
                                           ),
                                           Text('Dark mode'),
@@ -81,10 +98,10 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                     ],
                                   ),
                                   actions: [
-                                    FlatButton(
-                                      onPressed: () => Navigator.pop(context),
-                                      child: Text('Cancel'),
-                                    ),
+                                    // FlatButton(
+                                    //   onPressed: () => Navigator.pop(context),
+                                    //   child: Text('Cancel'),
+                                    // ),
                                     FlatButton(
                                       onPressed: () {
                                         Navigator.pop(context);
