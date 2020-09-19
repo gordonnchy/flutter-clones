@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import './constants/constant.dart';
 import './providers/whatsapp/whatsapp.dart';
+import './shared_prefs/shared_prefs.dart';
 
 import './pages/splash_screen.dart';
 import './pages/home.dart';
@@ -10,7 +11,25 @@ import './pages/challenges/color-change/color_change.dart';
 import './pages/challenges/profiles/profile_1.dart';
 import './pages/challenges/whatsapp/whatsapp.dart';
 
-class App extends StatelessWidget {
+class App extends StatefulWidget {
+  @override
+  _AppState createState() => _AppState();
+}
+
+class _AppState extends State<App> {
+  int modeValue = -1;
+
+  @override
+  void initState() {
+    super.initState();
+    readLightDarkStateMode();
+  }
+
+  readLightDarkStateMode() async {
+    modeValue = await readIntData(key: 'lightDarkModeState');
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -20,10 +39,11 @@ class App extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.indigo,
-            brightness:
-                Provider.of<WhatsAppProvider>(context).lightDarkModeState == 1
-                    ? Brightness.dark
-                    : Brightness.light,
+            brightness: modeValue == 1 ||
+                    Provider.of<WhatsAppProvider>(context).lightDarkModeState ==
+                        1
+                ? Brightness.dark
+                : Brightness.light,
           ),
           home: SplashScreen(),
           routes: {

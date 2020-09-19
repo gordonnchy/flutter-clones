@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../shared_prefs/shared_prefs.dart';
+
 class WhatsAppProvider extends ChangeNotifier {
   int _lightDarkModeState = -1;
 
@@ -8,6 +10,7 @@ class WhatsAppProvider extends ChangeNotifier {
 
   void setlightDarkModeState(int value) {
     _lightDarkModeState = value;
+    saveIntData(key: 'lightDarkModeState', data: _lightDarkModeState);
     notifyListeners();
   }
 }
