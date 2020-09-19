@@ -13,7 +13,8 @@ class WhatsAppPage extends StatefulWidget {
 class _WhatsAppPageState extends State<WhatsAppPage> {
   int _index = 1;
   Color _defaultColor = Colors.teal[800];
-  // bool _lightDarkModelValue = false;
+
+  int _radioValue = -1;
 
   @override
   Widget build(BuildContext context) {
@@ -55,41 +56,39 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                     children: [
                                       Row(
                                         children: [
-                                          Radio(
-                                            toggleable: true,
-                                            value: 'light',
-                                            groupValue: 'mode',
-                                            onChanged: (String val) {
-                                              print(val);
-                                              setState(() {});
+                                          Radio<int>(
+                                            value: 0,
+                                            groupValue: _radioValue,
+                                            onChanged: (int value) {
+                                              print(value);
                                             },
                                           ),
-                                          Text('Light Mode')
+                                          Text('Light mode'),
                                         ],
                                       ),
                                       Row(
                                         children: [
-                                          Radio(
-                                            toggleable: true,
-                                            value: 'dark',
-                                            groupValue: 'mode',
-                                            onChanged: (String val) {
-                                              print(val);
-                                              setState(() {});
+                                          Radio<int>(
+                                            value: 1,
+                                            groupValue: _radioValue,
+                                            onChanged: (int value) {
+                                              print(value);
                                             },
                                           ),
-                                          Text('Dark Mode')
+                                          Text('Dark mode'),
                                         ],
                                       )
                                     ],
                                   ),
                                   actions: [
                                     FlatButton(
-                                      onPressed: () {},
+                                      onPressed: () => Navigator.pop(context),
                                       child: Text('Cancel'),
                                     ),
                                     FlatButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
                                       child: Text('Ok'),
                                     ),
                                   ],

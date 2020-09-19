@@ -15,6 +15,7 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.indigo,
+        brightness: Brightness.dark
       ),
       home: SplashScreen(),
       routes: {
