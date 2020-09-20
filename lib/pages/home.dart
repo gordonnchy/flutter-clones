@@ -40,6 +40,11 @@ class HomePage extends StatelessWidget {
                   leading: Icon(Icons.whatshot),
                   title: Text('Whatsapp clone'),
                   onTap: () => Navigator.pushNamed(context, whatsapp),
+                ),
+                ListTile(
+                  leading: Icon(Icons.library_music),
+                  title: Text('Dotify'),
+                  onTap: () => Navigator.pushNamed(context, dotify),
                 )
               ],
             )

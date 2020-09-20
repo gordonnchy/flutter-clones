@@ -9,6 +9,7 @@ import './pages/home.dart';
 import './pages/challenges/color-change/color_change.dart';
 import './pages/challenges/profiles/profile_1.dart';
 import './pages/challenges/whatsapp/whatsapp.dart';
+import './pages/challenges/dotify/dotify.dart';
 
 // import './sample.dart';
 
@@ -58,7 +59,8 @@ class _AppState extends State<App> {
             home: (_) => HomePage(),
             color_change: (_) => ColorChangePage(),
             basic_profile: (_) => BasicProfile1Page(),
-            whatsapp: (_) => WhatsAppPage()
+            whatsapp: (_) => WhatsAppPage(),
+            dotify: (_) => DotifyPage()
           },
         );
       },
