@@ -30,6 +30,7 @@ flutter:
     - assets/week_1/
     - assets/spaceX.jpg
     - assets/hackathon.png
+    - assets/dotify-icons/
 
   # fonts:
   #   - family: Schyler
