@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import '../../shared_prefs/shared_prefs.dart';
 
 class WhatsAppProvider extends ChangeNotifier {
-  int _lightDarkModeState = -1;
-
-  // getters
-  int get lightDarkModeState => _lightDarkModeState;
-
   void setlightDarkModeState(int value) {
-    _lightDarkModeState = value;
-    saveIntData(key: 'lightDarkModeState', data: _lightDarkModeState);
+    saveIntData(key: 'lightDarkModeState', data: value);
     notifyListeners();
+  }
+
+  Future<int> readLightDarkStateMode() async {
+    final modeValue = await readIntData(key: 'lightDarkModeState') ?? 0;
+    return modeValue;
   }
 }

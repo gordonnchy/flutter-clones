@@ -73,6 +73,7 @@ class _ColorChangePageState extends State<ColorChangePage> {
               child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   scrollDirection: Axis.horizontal,
+                  physics: BouncingScrollPhysics(),
                   children: _colors
                       .map((color) => _buildColorWidget(color))
                       .toList()),

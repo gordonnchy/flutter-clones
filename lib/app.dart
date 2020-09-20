@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 
 import './constants/constant.dart';
 import './providers/whatsapp/whatsapp.dart';
-import './shared_prefs/shared_prefs.dart';
 
 import './pages/splash_screen.dart';
 import './pages/home.dart';
@@ -11,42 +10,48 @@ import './pages/challenges/color-change/color_change.dart';
 import './pages/challenges/profiles/profile_1.dart';
 import './pages/challenges/whatsapp/whatsapp.dart';
 
+// import './sample.dart';
+
 class App extends StatefulWidget {
   @override
   _AppState createState() => _AppState();
 }
 
 class _AppState extends State<App> {
-  int modeValue = -1;
+  int modeValue = 0;
+
+  WhatsAppProvider _whatsAppProvider = WhatsAppProvider();
 
   @override
   void initState() {
     super.initState();
-    readLightDarkStateMode();
-  }
-
-  readLightDarkStateMode() async {
-    modeValue = await readIntData(key: 'lightDarkModeState') ?? -1;
-    setState(() {});
+    _whatsAppProvider.readLightDarkStateMode().then((int value) {
+      if (value == null) {
+        return;
+      }
+      modeValue = value;
+      setState(() {});
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (BuildContext context) => WhatsAppProvider(),
+      create: (BuildContext context) => _whatsAppProvider,
       builder: (BuildContext context, _) {
         // try to get the current mode value from shared pref
-        readLightDarkStateMode();
+        _whatsAppProvider.readLightDarkStateMode().then((int value) {
+          if (value == null) {
+            return;
+          }
+          modeValue = value;
+          setState(() {});
+        });
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             primaryColor: Colors.indigo,
-            brightness:
-                Provider.of<WhatsAppProvider>(context).lightDarkModeState ==
-                            1 ||
-                        modeValue == 1
-                    ? Brightness.dark
-                    : Brightness.light,
+            brightness: modeValue == 1 ? Brightness.dark : Brightness.light,
           ),
           home: SplashScreen(),
           routes: {

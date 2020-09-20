@@ -17,8 +17,21 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
   int _index = 1;
   Color _defaultColor = Colors.teal[800];
 
+  int _radioGroupValue = 0;
+
+  radioGroupValue(WhatsAppProvider whatsAppProvider) async {
+    final valueFromStorage = await whatsAppProvider.readLightDarkStateMode();
+    setState(() {
+      _radioGroupValue = valueFromStorage;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final whatsAppProvider = Provider.of<WhatsAppProvider>(context);
+
+    radioGroupValue(whatsAppProvider);
+
     return DefaultTabController(
       initialIndex: 1,
       length: 4,
@@ -62,8 +75,7 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                                 WhatsAppProvider provider, _) {
                                               return Radio(
                                                 value: 0,
-                                                groupValue:
-                                                    provider.lightDarkModeState,
+                                                groupValue: _radioGroupValue,
                                                 onChanged: (int value) {
                                                   provider
                                                       .setlightDarkModeState(
@@ -82,8 +94,7 @@ class _WhatsAppPageState extends State<WhatsAppPage> {
                                                 WhatsAppProvider provider, _) {
                                               return Radio<int>(
                                                 value: 1,
-                                                groupValue:
-                                                    provider.lightDarkModeState,
+                                                groupValue: _radioGroupValue,
                                                 onChanged: (int value) {
                                                   provider
                                                       .setlightDarkModeState(

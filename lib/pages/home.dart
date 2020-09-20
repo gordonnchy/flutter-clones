@@ -14,6 +14,7 @@ class HomePage extends StatelessWidget {
                 image: DecorationImage(
                   image: AssetImage('assets/spaceX.jpg'),
                   fit: BoxFit.cover,
+                  alignment: Alignment.center,
                 ),
               ),
               accountName: Text('Godson Nchy'),
