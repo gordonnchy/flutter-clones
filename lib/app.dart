@@ -11,6 +11,10 @@ import './pages/challenges/profiles/profile_1.dart';
 import './pages/challenges/whatsapp/whatsapp.dart';
 import './pages/challenges/dotify/dotify.dart';
 
+// dotify
+import './pages/challenges/dotify/pages/auth/login.dart';
+import './pages/challenges/dotify/pages/auth/signup.dart';
+
 // import './sample.dart';
 
 class App extends StatefulWidget {
@@ -60,7 +64,9 @@ class _AppState extends State<App> {
             color_change: (_) => ColorChangePage(),
             basic_profile: (_) => BasicProfile1Page(),
             whatsapp: (_) => WhatsAppPage(),
-            dotify: (_) => DotifyPage()
+            dotify: (_) => DotifyPage(),
+            dotifyLogin: (_) => DotifyLoginPage(),
+            dotifySignup: (_) => DotifySignupPage()
           },
         );
       },
